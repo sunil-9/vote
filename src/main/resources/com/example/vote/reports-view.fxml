@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.example.vote.controller.ReportsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #3498db;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Election Reports">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBack" text="Back to Dashboard" />
+            </children>
+        </HBox>
+    </top>
+    
+    <center>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Select Election:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="electionComboBox" prefWidth="300.0" promptText="Select an election" />
+                        <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#handleGenerateReport" text="Generate Report" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="exportPdfButton" mnemonicParsing="false" onAction="#handleExportPdf" text="Export to PDF" />
+                    </children>
+                </HBox>
+                
+                <TabPane prefHeight="500.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                    <tabs>
+                        <Tab text="Summary">
+                            <content>
+                                <VBox spacing="10.0">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                    <children>
+                                        <HBox spacing="20.0">
+                                            <children>
+                                                <VBox styleClass="report-card" style="-fx-background-color: #e8f4f8; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #d0e1e9; -fx-padding: 10;">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total Votes">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Text>
+                                                        <Text fx:id="totalVotesText" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                                                            <font>
+                                                                <Font name="System Bold" size="24.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="report-card" style="-fx-background-color: #f9eef3; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e8d7e0; -fx-padding: 10;">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voter Turnout">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Text>
+                                                        <Text fx:id="voterTurnoutText" strokeType="OUTSIDE" strokeWidth="0.0" text="0%">
+                                                            <font>
+                                                                <Font name="System Bold" size="24.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </VBox>
+                                                <VBox styleClass="report-card" style="-fx-background-color: #f8f4e8; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9e1d0; -fx-padding: 10;">
+                                                    <children>
+                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Election Status">
+                                                            <font>
+                                                                <Font size="14.0" />
+                                                            </font>
+                                                        </Text>
+                                                        <Text fx:id="electionStatusText" strokeType="OUTSIDE" strokeWidth="0.0" text="N/A">
+                                                            <font>
+                                                                <Font name="System Bold" size="24.0" />
+                                                            </font>
+                                                        </Text>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                        
+                                        <TitledPane animated="false" collapsible="false" text="Election Information" VBox.vgrow="NEVER">
+                                            <content>
+                                                <GridPane hgap="10.0" vgap="5.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
+                                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="400.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Label text="Title:" />
+                                                        <Label text="Description:" GridPane.rowIndex="1" />
+                                                        <Label text="Dates:" GridPane.rowIndex="2" />
+                                                        <Label text="Created By:" GridPane.rowIndex="3" />
+                                                        <Label fx:id="electionTitleLabel" text="N/A" GridPane.columnIndex="1" />
+                                                        <Label fx:id="electionDescriptionLabel" text="N/A" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label fx:id="electionDatesLabel" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                        <Label fx:id="electionCreatedByLabel" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                    </children>
+                                                    <padding>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                    </padding>
+                                                </GridPane>
+                                            </content>
+                                        </TitledPane>
+                                        
+                                        <TitledPane animated="false" collapsible="false" text="Vote Distribution" VBox.vgrow="ALWAYS">
+                                            <content>
+                                                <HBox spacing="20.0">
+                                                    <children>
+                                                        <PieChart fx:id="voteDistributionPieChart" legendSide="RIGHT" HBox.hgrow="ALWAYS" />
+                                                    </children>
+                                                </HBox>
+                                            </content>
+                                        </TitledPane>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        
+                        <Tab text="Detailed Results">
+                            <content>
+                                <VBox spacing="10.0">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                    <children>
+                                        <BarChart fx:id="candidateVotesBarChart" title="Votes by Candidate" VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis side="LEFT" fx:id="yAxis" label="Votes" />
+                                            </yAxis>
+                                        </BarChart>
+                                        
+                                        <TitledPane animated="false" collapsible="false" text="Detailed Results Table" VBox.vgrow="ALWAYS">
+                                            <content>
+                                                <TableView fx:id="resultsTableView" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                                                    <columns>
+                                                        <TableColumn fx:id="rankColumn" prefWidth="75.0" text="Rank" />
+                                                        <TableColumn fx:id="candidateNameColumn" prefWidth="200.0" text="Candidate Name" />
+                                                        <TableColumn fx:id="candidatePositionColumn" prefWidth="150.0" text="Position" />
+                                                        <TableColumn fx:id="votesColumn" prefWidth="100.0" text="Votes" />
+                                                        <TableColumn fx:id="percentageColumn" prefWidth="100.0" text="Percentage" />
+                                                    </columns>
+                                                    <columnResizePolicy>
+                                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                    </columnResizePolicy>
+                                                </TableView>
+                                            </content>
+                                        </TitledPane>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                        
+                        <Tab text="Voter Demographics">
+                            <content>
+                                <VBox spacing="10.0">
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                    <children>
+                                        <Label text="Note: This section would contain demographic data about voters if available" />
+                                        <TextArea fx:id="demographicsNote" editable="false" prefHeight="100.0" prefWidth="200.0" text="Voter demographic data is not currently tracked in the system. This feature could be implemented in future versions by collecting anonymous demographic information during the voting process." wrapText="true" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #ecf0f1;">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <children>
+                <Label fx:id="statusLabel" text="Ready" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

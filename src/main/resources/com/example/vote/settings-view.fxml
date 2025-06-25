@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.example.vote.controller.SettingsController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #3498db;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Application Settings">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBack" text="Back to Dashboard" />
+            </children>
+        </HBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <children>
+                <TitledPane animated="false" collapsible="true" text="System Configuration" VBox.vgrow="NEVER">
+                    <content>
+                        <GridPane hgap="15.0" vgap="15.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="150.0" prefWidth="180.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" prefWidth="300.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Database Connection:" />
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1">
+                                    <children>
+                                        <TextField fx:id="dbConnectionField" editable="false" prefWidth="300.0" promptText="jdbc:mysql://localhost:3306/vote" />
+                                        <Button fx:id="testConnectionButton" mnemonicParsing="false" onAction="#handleTestConnection" text="Test Connection" />
+                                    </children>
+                                </HBox>
+                                
+                                <Label text="Enable User Registration:" GridPane.rowIndex="1" />
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <CheckBox fx:id="enableUserRegistrationCheckbox" mnemonicParsing="false" selected="true" />
+                                        <Label text="Allow new users to register" />
+                                    </children>
+                                </HBox>
+                                
+                                <Label text="Email Notifications:" GridPane.rowIndex="2" />
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <children>
+                                        <CheckBox fx:id="enableEmailNotificationsCheckbox" mnemonicParsing="false" />
+                                        <Label text="Send email notifications for election events" />
+                                    </children>
+                                </HBox>
+                                
+                                <Label text="Automatic IP Blocking:" GridPane.rowIndex="3" />
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <children>
+                                        <CheckBox fx:id="enableIpBlockingCheckbox" mnemonicParsing="false" selected="true" />
+                                        <Label text="Block IPs after multiple failed login attempts" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                    </content>
+                </TitledPane>
+                
+                <TitledPane animated="false" collapsible="true" expanded="true" text="Email Configuration" VBox.vgrow="NEVER">
+                    <content>
+                        <GridPane hgap="15.0" vgap="15.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="150.0" prefWidth="180.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" prefWidth="300.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="SMTP Server:" />
+                                <TextField fx:id="smtpServerField" promptText="smtp.example.com" GridPane.columnIndex="1" />
+                                
+                                <Label text="SMTP Port:" GridPane.rowIndex="1" />
+                                <TextField fx:id="smtpPortField" promptText="587" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                
+                                <Label text="Email Username:" GridPane.rowIndex="2" />
+                                <TextField fx:id="emailUsernameField" promptText="notifications@example.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                
+                                <Label text="Email Password:" GridPane.rowIndex="3" />
+                                <PasswordField fx:id="emailPasswordField" promptText="••••••••" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                
+                                <Label text="Email From:" GridPane.rowIndex="4" />
+                                <TextField fx:id="emailFromField" promptText="Voting System &lt;no-reply@example.com&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                            </children>
+                        </GridPane>
+                    </content>
+                </TitledPane>
+                
+                <TitledPane animated="false" collapsible="true" text="Application Appearance" VBox.vgrow="NEVER">
+                    <content>
+                        <GridPane hgap="15.0" vgap="15.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="150.0" prefWidth="180.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" prefWidth="300.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Theme:" />
+                                <ComboBox fx:id="themeComboBox" prefWidth="200.0" promptText="Choose Theme" GridPane.columnIndex="1">
+                                    <tooltip>
+                                        <Tooltip text="Select application theme" />
+                                    </tooltip>
+                                </ComboBox>
+                                
+                                <Label text="Application Title:" GridPane.rowIndex="1" />
+                                <TextField fx:id="applicationTitleField" promptText="Voting System" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                
+                                <Label text="Date Format:" GridPane.rowIndex="2" />
+                                <ComboBox fx:id="dateFormatComboBox" prefWidth="200.0" promptText="Choose Date Format" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                            </children>
+                        </GridPane>
+                    </content>
+                </TitledPane>
+                
+                <TitledPane animated="false" collapsible="true" text="Backup &amp; Maintenance" VBox.vgrow="NEVER">
+                    <content>
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="backupDatabaseButton" mnemonicParsing="false" onAction="#handleBackupDatabase" text="Backup Database" />
+                                        <Label text="Last backup: " />
+                                        <Label fx:id="lastBackupLabel" text="Never" />
+                                    </children>
+                                </HBox>
+                                
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="cleanupDatabaseButton" mnemonicParsing="false" onAction="#handleCleanupDatabase" text="Cleanup Database" />
+                                        <Label text="Remove expired sessions and unused data" />
+                                    </children>
+                                </HBox>
+                                
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="resetSystemButton" mnemonicParsing="false" onAction="#handleResetSystem" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Reset System" />
+                                        <Label text="WARNING: This will delete all data except admin users!" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </TitledPane>
+                
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button fx:id="restoreDefaultsButton" mnemonicParsing="false" onAction="#handleRestoreDefaults" text="Restore Defaults" />
+                        <Button fx:id="applyButton" defaultButton="true" mnemonicParsing="false" onAction="#handleApply" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="Apply Changes" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #ecf0f1;">
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <children>
+                <Label fx:id="statusLabel" text="Ready" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

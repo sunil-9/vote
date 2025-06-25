@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vote.controller.CandidateFormController">
+    <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        
+        <Label text="Candidate Details" styleClass="title-label">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        
+        <GridPane hgap="10.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="120.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="400.0" />
+            </columnConstraints>
+            
+            <!-- Candidate Name -->
+            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="nameField" promptText="Enter candidate name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <!-- Candidate Position -->
+            <Label text="Position:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="positionField" promptText="Enter candidate position" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <!-- Candidate Photo URL -->
+            <Label text="Photo URL:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="photoUrlField" promptText="Enter photo URL or file path" HBox.hgrow="ALWAYS" />
+                <Button fx:id="browseButton" text="Browse" onAction="#handleBrowsePhoto" />
+            </HBox>
+            
+            <!-- Candidate Profile -->
+            <Label text="Profile:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextArea fx:id="profileArea" promptText="Enter candidate profile or bio" wrapText="true" prefHeight="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <!-- Current Votes (read-only in edit mode) -->
+            <Label text="Votes:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="votesField" promptText="0" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+        
+        <Region VBox.vgrow="ALWAYS" />
+        
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <Label fx:id="errorLabel" textFill="RED" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancelButton" onAction="#handleCancel" text="Cancel" prefWidth="100.0" />
+            <Button fx:id="saveButton" onAction="#handleSave" text="Save" prefWidth="100.0" defaultButton="true" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+        </HBox>
+    </VBox>
+</AnchorPane>
